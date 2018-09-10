@@ -25,16 +25,18 @@ app.post('/webhook', (req, res) => {
 		console.log('Got geo city parameter from DialogFlow '+data.queryResult.parameters['geo-city']);
 		let geocity = data.queryResult.parameters['geo-city'] ? data.queryResult.parameters['geo-city'] : 'London';
 		weather.getWeather(geocity, response => {
-			let responseObj={
-				"fulfillmentText": response
-				,"fulfillmentMessages": [{"text": {"text": [response]}}]
-				,"source":""
-			}
+			/*
 			return res.json({
 				speech: responseObj,
 				displayText: responseObj,
 				source: 'OpenWeatherMap-webhook-response'
+			})*/
+			return res.json({
+				fulfillmentText: response
+				,fulfillmentMessages: [{"text": {"text": [response]}}]
+				,source:"OpenWeatherMap-webhook-response"
 			})
+
 		});
 	/*		break;
 		
