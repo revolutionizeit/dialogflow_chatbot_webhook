@@ -19,35 +19,17 @@ app.post('/webhook', (req, res) => {
 	console.log('Here is the post request from DialogFlow');
     console.log(data);
 
-	/*switch(action){
-		case('get-weather'):
-	*/
-		console.log('Got geo city parameter from DialogFlow '+data.queryResult.parameters['geo-city']);
-		let geocity = data.queryResult.parameters['geo-city'] ? data.queryResult.parameters['geo-city'] : 'London';
-		weather.getWeather(geocity, response => {
-			/*
-			return res.json({
-				speech: responseObj,
-				displayText: responseObj,
-				source: 'OpenWeatherMap-webhook-response'
-			})*/
-			return res.json({
-				fulfillmentText: response
-				,fulfillmentMessages: [{"text": {"text": [response]}}]
-				,source:"OpenWeatherMap-webhook-response"
-			})
+	console.log('Got geo city parameter from DialogFlow '+data.queryResult.parameters['geo-city']);
+	let geocity = data.queryResult.parameters['geo-city'] ? data.queryResult.parameters['geo-city'] : 'London';
+	weather.getWeather(geocity, response => {
 
-		});
-	/*		break;
-		
-		default:
-			return res.json({
-				speech: 'Invalid request',
-				displayText: 'Invalid request',
-				source: 'no-webhook-found'
+		return res.json({
+			fulfillmentText: response
+			,fulfillmentMessages: [{"text": {"text": [response]}}]
+			,source:"OpenWeatherMap-webhook-response"
 		})
-	}
-	*/
+
+	});
 })
 
 app.listen(process.env.PORT || 8000, () => {
