@@ -7,7 +7,8 @@ exports.getWeather = (geocity, cb) => {
 		uri: 'http://api.openweathermap.org/data/2.5/weather',
 		qs: {
 			q: geocity,
-			appid: config.WEATHER_API
+			appid: config.WEATHER_API,
+			units: config.TEMP_UNIT
 		}
 	}, (error, response, body) => {
 		if(!error && response.statusCode === 200){

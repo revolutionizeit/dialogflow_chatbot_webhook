@@ -1,3 +1,4 @@
 module.exports = {
-	WEATHER_API: '44be78f2116dfce685fa61a2040ec1fa'
+	WEATHER_API: '44be78f2116dfce685fa61a2040ec1fa',
+	TEMP_UNIT: 'metric'
 }
