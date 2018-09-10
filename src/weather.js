@@ -14,7 +14,7 @@ exports.getWeather = (geocity, cb) => {
 			let weather = JSON.parse(body);
 			if(weather)
 			
-			response = weather.hasOwnProperty('weather') ? `The current weather for ${geocity} is ${weather['weather'].['main'].['temp']} degress with ${weather['weather'][0]['description']}` :
+			response = weather.hasOwnProperty('weather') ? `The current weather for ${geocity} is ${weather['weather'].main.temp} degress with ${weather['weather'][0]['description']}` :
 															'No appropriate weather details found'
 
 			cb(response)
