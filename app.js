@@ -15,7 +15,7 @@ app.post('/webhook', (req, res) => {
 	if(!req.body) return res.sendStatus(400)
 	let data = req.body;
 	let response="";
-	let action = data.result.action ? data.result.action : '';
+	//let action = data.result.action ? data.result.action : '';
 	console.log('Here is the post request from DialogFlow');
     console.log(data);
 
