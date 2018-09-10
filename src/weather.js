@@ -2,7 +2,7 @@ const request = require('request');
 const config = require('../config');
 
 exports.getWeather = (geocity, cb) => {
-	let response;
+	let response="";
 	request({
 		uri: 'http://api.openweathermap.org/data/2.5/weather',
 		qs: {
