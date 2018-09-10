@@ -11,21 +11,27 @@ app.use(bodyparser.urlencoded({
 app.use(bodyparser.json());
 
 app.post('/webhook', (req, res) => {
+	console.log('Received a post request');
+	if(!req.body) return res.sendStatus(400)
 	let data = req.body;
-	let response;
+	let response="";
 	let action = data.result.action ? data.result.action : '';
+	console.log('Here is the post request from DialogFlow');
+    console.log(data);
 
-	switch(action){
+	/*switch(action){
 		case('get-weather'):
-			let geocity = data.result.parameters['geo-city'] ? data.result.parameters['geo-city'] : 'Berlin';
-			weather.getWeather(geocity, response => {
-				return res.json({
-					speech: response,
-					displayText: response,
-					source: 'OpenWeatherMap-webhook-response'
-				})
-			});
-			break;
+	*/
+		console.log('Got geo city parameter from DialogFlow '+data.queryResult.parameters['geo-city']);
+		let geocity = data.queryResult.parameters['geo-city'] ? data.queryResult.parameters['geo-city'] : 'London';
+		weather.getWeather(geocity, response => {
+			return res.json({
+				speech: response,
+				displayText: response,
+				source: 'OpenWeatherMap-webhook-response'
+			})
+		});
+	/*		break;
 		
 		default:
 			return res.json({
@@ -34,6 +40,7 @@ app.post('/webhook', (req, res) => {
 				source: 'no-webhook-found'
 		})
 	}
+	*/
 })
 
 app.listen(process.env.PORT || 8000, () => {
